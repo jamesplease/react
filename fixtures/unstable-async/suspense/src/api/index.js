@@ -9,18 +9,18 @@ export function fetchCoreContributorListJSON() {
 }
 
 export function fetchUserProfileJSON(id) {
-  return makeFakeAPICall(`/${id}/details`, userProfileJSON[id]);
+  return makeFakeAPICall(`/${id}/details`, userProfileJSON[id], 3000);
 }
 
 export function fetchUserRepositoriesListJSON(id) {
-  return makeFakeAPICall(`/${id}/repositories`, userRepositoriesListJSON[id]);
+  return makeFakeAPICall(`/${id}/repositories`, userRepositoriesListJSON[id], 5000);
 }
 
-let fakeRequestTime = 1000;
+let defaultFakeRequestTime = 1000;
 let onProgress = () => true;
 
 export function setFakeRequestTime(val) {
-  fakeRequestTime = val;
+  defaultFakeRequestTime = val;
 }
 
 export function setProgressHandler(handler) {
@@ -43,7 +43,7 @@ export function setPaused(url, isPaused) {
   }
 }
 
-function makeFakeAPICall(url, result) {
+function makeFakeAPICall(url, result, fakeRequestTime = defaultFakeRequestTime) {
   let i = 1;
   return new Promise(resolve => {
     isPausedUrl[url] = shouldPauseNewRequests;

@@ -69,7 +69,7 @@ export default class App extends PureComponent {
           }}>
           Return to list
         </button>
-        <Suspense maxDuration={2000} fallback={<Spinner size="large" />}>
+        <Suspense maxDuration={500} fallback={<Spinner size="large" />}>
           <UserPage id={id} />
         </Suspense>
       </div>

@@ -18,15 +18,15 @@
       "filename": "react.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react",
-      "size": 57749,
-      "gzip": 15548
+      "size": 58926,
+      "gzip": 16014
     },
     {
       "filename": "react.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react",
-      "size": 6215,
-      "gzip": 2648
+      "size": 6223,
+      "gzip": 2655
     },
     {
       "filename": "React-dev.js",
@@ -60,8 +60,8 @@
       "filename": "react-dom.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dom",
-      "size": 692458,
-      "gzip": 160422
+      "size": 692761,
+      "gzip": 160532
     },
     {
       "filename": "react-dom.production.min.js",
@@ -802,8 +802,8 @@
       "filename": "scheduler-tracing.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "scheduler",
-      "size": 10319,
-      "gzip": 2326
+      "size": 10480,
+      "gzip": 2403
     },
     {
       "filename": "scheduler-tracing.production.min.js",

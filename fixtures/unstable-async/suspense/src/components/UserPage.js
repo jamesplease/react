@@ -106,7 +106,7 @@ const ImageResource = unstable_createResource(
   src =>
     new Promise(resolve => {
       const img = new Image();
-      img.onload = () => resolve(src);
+      img.onload = () => setTimeout(() => resolve(src), 5000);
       img.src = src;
     })
 );
@@ -116,8 +116,10 @@ function Img({src, alt, ...rest}) {
 }
 
 function UserPicture({source}) {
+  console.log('rendering!');
+
   return (
-    <Suspense maxDuration={1500} fallback={<img src={source} alt="poster" />}>
+    <Suspense maxDuration={1500} fallback={<Spinner size="medium" />}>
       <Img
         src={source}
         alt="profile picture"
