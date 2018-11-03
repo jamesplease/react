@@ -22,7 +22,7 @@ const ContributorListPage = ({loadingId, onUserClick}) => (
         <ContributorListItem
           key={user.id}
           onClick={() => onUserClick(user.id)}
-          isLoading={loadingId && user.id === loadingId}
+          isLoading={undefined}
           user={user}
         />
       ))}

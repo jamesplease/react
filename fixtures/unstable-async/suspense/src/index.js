@@ -44,7 +44,7 @@ class Debugger extends PureComponent {
   };
 
   componentDidMount() {
-    setFakeRequestTime(this.state.requestTime * 1000);
+    setFakeRequestTime(this.state.requestTime);
     setProgressHandler(this.handleProgress);
     window.addEventListener('keydown', e => {
       if (e.key.toLowerCase() === '/') {
@@ -59,7 +59,7 @@ class Debugger extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.requestTime !== this.state.requestTime) {
-      setFakeRequestTime(this.state.requestTime * 1000);
+      setFakeRequestTime(this.state.requestTime);
     }
   }
 

@@ -5,7 +5,7 @@ import {
 } from './data';
 
 export function fetchCoreContributorListJSON() {
-  return makeFakeAPICall('/react/contributors', coreContributorListJSON);
+  return makeFakeAPICall('/react/contributors', coreContributorListJSON, 1000);
 }
 
 export function fetchUserProfileJSON(id) {
@@ -16,11 +16,11 @@ export function fetchUserRepositoriesListJSON(id) {
   return makeFakeAPICall(`/${id}/repositories`, userRepositoriesListJSON[id], 5000);
 }
 
-let defaultFakeRequestTime = 1000;
+let requestTimeMultipler = 1;
 let onProgress = () => true;
 
 export function setFakeRequestTime(val) {
-  defaultFakeRequestTime = val;
+  requestTimeMultipler = val;
 }
 
 export function setProgressHandler(handler) {
@@ -43,7 +43,7 @@ export function setPaused(url, isPaused) {
   }
 }
 
-function makeFakeAPICall(url, result, fakeRequestTime = defaultFakeRequestTime) {
+function makeFakeAPICall(url, result, fakeRequestTime = 1000) {
   let i = 1;
   return new Promise(resolve => {
     isPausedUrl[url] = shouldPauseNewRequests;
@@ -51,14 +51,18 @@ function makeFakeAPICall(url, result, fakeRequestTime = defaultFakeRequestTime) 
       if (!isPausedUrl[url]) {
         i++;
       }
-      onProgress(url, i, isPausedUrl[url]);
+      const networkTime = fakeRequestTime * requestTimeMultipler;
+
+      let progressValue = networkTime > 0 ? i : 100;
+      onProgress(url, progressValue, isPausedUrl[url]);
       if (isPausedUrl[url]) {
         return;
       }
-      if (i === 100) {
+
+      if (i === 100 || networkTime === 0) {
         resolve(result);
       } else {
-        setTimeout(notify, fakeRequestTime / 100);
+        setTimeout(notify, networkTime / 100);
       }
     }
     notifiers[url] = notify;
